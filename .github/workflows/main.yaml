@@ -89,7 +89,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Pre puiblish NextUI package
-        run: yarn pre-publish:nextui
+        run: yarn pre-publish:react
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
