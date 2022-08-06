@@ -57,27 +57,27 @@ jobs:
       - name: Build
         run: yarn build
 
-  tests:
-    needs: [lint, build]
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          cache: 'yarn'
-          node-version: '16'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Test
-        run: yarn coverage:update
-      - uses: codecov/codecov-action@v2
-        with:
-          directory: './packages/react'
+  # tests:
+  #   needs: [lint, build]
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         cache: 'yarn'
+  #         node-version: '16'
+  #     - name: Install dependencies
+  #       run: yarn install --frozen-lockfile
+  #     - name: Test
+  #       run: yarn coverage:update
+  #     - uses: codecov/codecov-action@v2
+  #       with:
+  #         directory: './packages/react'
         
   publish:
-    needs: [build, tests]
+    needs: [build]
     runs-on: ubuntu-20.04
     if: ${{ github.event_name == 'push' }}
     steps:
